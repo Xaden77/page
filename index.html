@@ -14,6 +14,23 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <link rel=themeData href="BLEH_files/themedata.thmx">
 <link rel=colorSchemeMapping href="BLEH_files/colorschememapping.xml">
 <style>
+	 body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            overflow: hidden;
+        }
+        #animatedSquare {
+            width: 50px;
+            height: 50px;
+            background-color: #3498db;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+        }
 <!--
  /* Font Definitions */
  @font-face
@@ -287,7 +304,7 @@ div.WordSection1
 
 <body lang=EN-IN link="#0563C1" vlink="#954F72" style='tab-interval:36.0pt;
 word-wrap:break-word'>
-
+<div id="animatedSquare"></div>
 <div class=WordSection1>
 
 <p class=MsoTitle align=center style='text-align:center'>BLEH</p>
@@ -313,7 +330,31 @@ src="/page/2.png" v:shapes="Group_x0020_3 Picture_x0020_1 Text_x0020_Box_x0020_2
 "Cascadia Mono ExtraLight"'>And <span class=SpellE>iam</span> done <o:p></o:p></span></p>
 
 </div>
+ <script >
+	 const square = document.getElementById('animatedSquare');
+let position = 0; // Start position
+const speed = 2; // Speed of movement
 
+function animate() {
+    // Update the position
+    position += speed;
+
+    // Move the square
+    square.style.left = position + 'px';
+
+    // Reset the position if it goes off the screen
+    if (position > window.innerWidth) {
+        position = -50; // Start again from the left
+    }
+
+    // Call the animate function again for the next frame
+    requestAnimationFrame(animate);
+}
+
+// Start the animation
+animate();
+
+ </script>
 </body>
 
 </html>
